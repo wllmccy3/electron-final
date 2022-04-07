@@ -6,8 +6,6 @@ import Store from 'electron-store'
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
 declare const SPLASH_WINDOW_WEBPACK_ENTRY: string;
-declare const FORM_WINDOW_WEBPACK_ENTRY: string;
-declare const SETTINGS_WINDOW_WEBPACK_ENTRY: string;
 
 
 let mainWindow: BrowserWindow;
@@ -65,7 +63,7 @@ function createFormWindow(): void {
     height: 1280
   });
 
-  formWindow.loadURL(FORM_WINDOW_WEBPACK_ENTRY);
+  formWindow.loadURL(MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY);
 }
 
 function createSettingsWindow(): void {
@@ -74,7 +72,7 @@ function createSettingsWindow(): void {
     height: 1500
   });
 
-  settingsWindow.loadURL(SETTINGS_WINDOW_WEBPACK_ENTRY);
+  settingsWindow.loadURL(MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY);
 }
 
 // This method will be called when Electron has finished
@@ -90,7 +88,7 @@ app.on('ready', () => {
   ipcMain.on('open-settings',(event, name) => {
     let webContents = event.sender;
     let win = BrowserWindow.fromWebContents(webContents);
-
+    
   });
 
   ipcMain.handle('dark-mode:toggle', () => {
@@ -105,6 +103,7 @@ app.on('ready', () => {
   ipcMain.handle('dark-mode:system', () => {
     nativeTheme.themeSource = 'system'
   })
+  
   //createSplash();
   createMainWindow();
   mainWindow.once('ready-to-show', () => {

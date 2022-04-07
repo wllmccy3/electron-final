@@ -64,16 +64,6 @@
                   "html": "./src/splash.html",
                   "js": "./src/splash.ts",
                   "name": "splash_window"
-                },
-                {
-                  "html": "./src/form.html",
-                  "js": "./src/form.ts",
-                  "name": "form_window"
-                },
-                {
-                  "html": "./src/settings.html",
-                  "js": "./src/settings.ts",
-                  "name": "settings_window"
                 }
               ]
             }
